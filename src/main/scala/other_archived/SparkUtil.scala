@@ -1,4 +1,5 @@
 package other_archived
+import org.joda.time.DateTime
 
 object SparkUtil {
   //  import org.apache.spark.sql.DataFrame
@@ -43,4 +44,8 @@ object SparkUtil {
   //    println("-------copy to jupyter end----------")
   //    println()
   //  }
+
+  def main(args: Array[String]): Unit = {
+    println(DateTime.now.getDayOfMonth)
+  }
 }

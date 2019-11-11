@@ -1,4 +1,4 @@
-package CookBook.c13_Json
+package library_demo.json
 
 import org.json4s.DefaultFormats
 import org.json4s._
