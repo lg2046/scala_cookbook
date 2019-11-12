@@ -6,6 +6,7 @@ import java.nio.file.{Path, StandardWatchEventKinds, WatchEvent}
 import active_support._
 
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.io.Source
 
 object BetterFileDemo {
   def main(args: Array[String]): Unit = {
@@ -300,47 +301,5 @@ object BetterFileDemo {
     //      }
     //    }
     //    watcher.start()
-
-
-    /** 扩展进程处理 scala自带 */
-
-    //    import sys.process._
-    //    "ls -al".! //阻塞 返回退出码
-    //    "ls -al".!! //阻塞 捕获输出 非0退出码暴异常  标准错误信息打印到控制台
-
-    //    "which google".lineStream_!.headOption tap println //输出以流返回  但不会暴异常
-
-    //单独截获退出码 标准输出与标准错误
-    //    val (stdout, stderr) = (new StringBuilder, new StringBuilder)
-    //    val status = "ls -al FRED" ! ProcessLogger(stdout append _, stderr append _)
-    //
-    //    println(status)
-    //    println(stdout)
-    //    println(stderr)
-
-    //管道命令
-    //    val numProcs = ("ps auxw" #| "wc -l").!!.trim
-    //    println(s"#procs = $numProcs")
-
-    // #&&第一个命令成功才运行第二个
-    // #||第一个命令失败才运行第二个
-    // ### 依次运行命令，退出码为最后一个命令的退出码
-    //    ("ls -alh" #| "wc -l").!!.trim tap println
-
-    //重定义扩展命令的stdin stdout
-    // #> stdout重定向  #< 重定向stdin
-    //    ("ls -alh" #> File("files.txt").toJava).!
-
-    //    scala.io.Source.fromURL("http://www.google.com").mkString tap println
-    //    (new URL("http://www.google.com") #> File("google.txt").toJava).!
-
-    //    "ls *.txt".! //无法处理命令中的通配符 使用下面的才行
-    //    Seq("/bin/sh", "-c", "ls *.txt").!
-
-    //在指定的目录下运行进程
-    //    Process("ls -al", File("/tmp").toJava).!
-
-    //运行命令时指定环境变量
-    //    Process("env", File("/tmp").toJava, "PATH" -> ".:/usr/bin:/opt/scala/bin").!
   }
 }
