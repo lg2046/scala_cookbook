@@ -4,7 +4,7 @@ import java.io.InputStream
 import java.nio.charset.StandardCharsets
 
 import org.json4s.{DefaultFormats, _}
-import org.json4s.native.JsonMethods.{parse => json_parse}
+import org.json4s.jackson.JsonMethods.{parse => json_parse}
 
 case class Person(name: String, age: Int, address: String)
 
