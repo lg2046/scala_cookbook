@@ -1,18 +1,11 @@
 package library_demo
 
-import java.net.URL
-import java.nio.file.{Path, StandardWatchEventKinds, WatchEvent}
-
 import active_support._
-
-import scala.concurrent.ExecutionContext.Implicits.global
-import scala.io.Source
 
 object BetterFileDemo {
   def main(args: Array[String]): Unit = {
     import better.files._
     import File._
-    import java.io.{File => JFile}
 
     /** 1: 实例化File */
     val f = File("/Users/liguang") // /User/liguang
