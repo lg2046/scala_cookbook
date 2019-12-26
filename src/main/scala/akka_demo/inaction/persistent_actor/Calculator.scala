@@ -1,7 +1,7 @@
 package akka_demo.inaction.persistent_actor
 
 import akka.actor.{ActorLogging, Props}
-import akka.persistence.{PersistentActor, RecoveryCompleted, SnapshotMetadata, SnapshotOffer}
+import akka.persistence.{PersistentActor, Recovery, RecoveryCompleted, SnapshotMetadata, SnapshotOffer}
 import akka_demo.inaction.persistent_actor.Calculator._
 import play.api.libs.json._
 
@@ -48,7 +48,7 @@ class Calculator extends PersistentActor with ActorLogging {
       println(s"recovering calc from snapshot $metadata")
       state = snapshot.result
 
-    //当恢复完毕 会收到该消息
+    //当恢复完毕 会收到该消息 处理完后才开始处理command
     case RecoveryCompleted => log.info("Calculator recovery completed")
   }
 

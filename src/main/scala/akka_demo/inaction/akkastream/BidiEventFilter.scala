@@ -30,7 +30,7 @@ object BidiEventFilter {
     //支持不同的粘包方式
     val inFlow: Flow[ByteString, Event, NotUsed] = if (delimiter == "json") {
       JsonFraming.objectScanner(1024 * 1024) // 最大json对象字节数
-        .map(bs => Json.parse(bs.decodeString("UTF8")).as[Event])
+        .map(bs => Json.parse(bs.utf8String).as[Event])
     } else {
       Framing.delimiter(ByteString("\n"), 1000)
         .map(_.decodeString("UTF8"))
