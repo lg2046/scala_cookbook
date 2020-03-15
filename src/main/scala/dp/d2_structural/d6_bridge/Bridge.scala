@@ -1,19 +1,19 @@
 package dp.d2_structural.d6_bridge
 
 abstract class PasswordConverterBase {
-  self: Hasher =>
+  this: Hasher =>
   def convert(password: String): String
 }
 
 class SaltPasswordConverterBase(salt: String) extends PasswordConverterBase {
-  self: Hasher =>
+  this: Hasher =>
   def convert(password: String): String = {
     hash(s"$salt:$password")
   }
 }
 
 class SimplePasswordConverterBase extends PasswordConverterBase {
-  self: Hasher =>
+  this: Hasher =>
   def convert(password: String): String = {
     hash(password)
   }

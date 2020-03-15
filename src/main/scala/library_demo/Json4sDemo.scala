@@ -102,6 +102,10 @@ object Json4sDemo {
     val jsonStr = write(s)
     jsonStr tap println
 
+    println("------test null------")
+    val s2 = Student(null, 20)
+    println(write(s2)(DefaultFormats + new StudentSerializer))
+
     println(read[Student](jsonStr))
 
     println("use custom formats")

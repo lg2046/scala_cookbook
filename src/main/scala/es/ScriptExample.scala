@@ -1,10 +1,13 @@
-//package elastic_search_learning
-//
-//import com.sksamuel.elastic4s.http.ElasticDsl._
-//import com.sksamuel.elastic4s.http.search.SearchResponse
-//import com.sksamuel.elastic4s.http.{HttpClient, RequestFailure, RequestSuccess}
-//import com.sksamuel.elastic4s.script.{ScriptDefinition, ScriptFieldDefinition}
-//import com.sksamuel.elastic4s.searches.queries.funcscorer.FieldValueFactorFunctionModifier
+
+package es
+
+import com.sksamuel.elastic4s.http.ElasticDsl._
+
+
+import com.sksamuel.elastic4s.http.search.SearchResponse
+import com.sksamuel.elastic4s.http.{HttpClient, RequestFailure, RequestSuccess}
+import com.sksamuel.elastic4s.searches.queries.funcscorer.FieldValueFactorFunctionModifier
+
 //import utils.EsClient
 //
 //import scala.concurrent.ExecutionContext.Implicits.global
@@ -105,72 +108,7 @@
 //          .boostMode("replace")
 //      }
 //    }.await
-//
-//    //返回脚本字段
-//    val scriptFieldQuery = client.execute {
-//      search("sat/scores").query {
-//        boolQuery().must(
-//          matchQuery("cname", "Alameda"),
-//          matchQuery("rtype", "S"),
-//          termQuery("NumTstTakr", 92)
-//        )
-//      }.scriptfields(
-//        ScriptFieldDefinition(
-//          field = "some_scores",
-//          script = ScriptDefinition(
-//            script =
-//              s"""
-//                 |long year = doc['year'].value;
-//                 |return year + 20;
-//              """.stripMargin.replaceAll("\n", " ")
-//            , lang = Some("painless")
-//          )
-//        )
-//      )
-//        .sourceExclude("_all") //用了script fields默认不返回source
-//        .size(10)
-//    }.await
-//
-//    //脚本做为查询 可以放在query, 也可以放在filter里面 并返回脚本字段
-//    val scriptQuery3 = client.execute {
-//      search("sat/scores").query {
-//        scriptQuery(
-//          ScriptDefinition(
-//            lang = Some("painless"),
-//            script =
-//              s"""
-//                 |return doc['AvgScrRead'].value < 350 && doc['AvgScrMath'].value > 350;
-//               """.stripMargin.replaceAll("\n", " ")
-//          )
-//        )
-//      }.scriptfields(
-//        ScriptFieldDefinition("sat_scores",
-//          ScriptDefinition(
-//            lang = Some("painless"),
-//            script =
-//              s"""
-//                 |String[] score_names = new String[] {'AvgScrRead', 'AvgScrWrit', 'AvgScrMath'};
-//                 |
-//                 |ArrayList sat_scores = new ArrayList();
-//                 |int total_score = 0;
-//                 |
-//                 |for(int i = 0; i < score_names.length; i++) {
-//                 |  int sc = (int) doc[score_names[i]].value;
-//                 |  total_score += sc;
-//                 |  sat_scores.add(sc);
-//                 |}
-//                 |
-//                 |sat_scores.add(total_score);
-//                 |return sat_scores;
-//                 |
-//              """.stripMargin.replaceAll("\n", " ")
-//          )
-//        )
-//      ).sourceExclude("_all")
-//    }.await
-//
-//    ESHelper.showResponse(scriptQuery3)
-//
+
 //    client.close()
 //  }
 //}
