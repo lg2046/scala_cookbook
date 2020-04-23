@@ -12,6 +12,7 @@ trait AddLineNumberWriter extends InputWriterDecorator {
   private var lineNumber_AddLineNumberWriter = 1
 
   abstract override def write(str: String): Unit = {
+    println("add line number")
     super.write(s"""$lineNumber_AddLineNumberWriter: $str""")
     lineNumber_AddLineNumberWriter += 1
   }
@@ -19,16 +20,23 @@ trait AddLineNumberWriter extends InputWriterDecorator {
 
 trait AddTimeStampWriter extends InputWriterDecorator {
   abstract override def write(str: String): Unit = {
+    println(println("add time stamp"))
     super.write(s"""${System.currentTimeMillis()}: $str""")
   }
 }
 
 trait UpperCaseWriter extends InputWriterDecorator {
-  abstract override def write(str: String): Unit = super.write(str.toUpperCase)
+  abstract override def write(str: String): Unit = {
+    println("add upper case")
+    super.write(str.toUpperCase)
+  }
 }
 
 class BasicWriter extends InputWriter {
-  override def write(str: String): Unit = println(str)
+  override def write(str: String): Unit = {
+    println("basic")
+    println(str)
+  }
 }
 
 object DecoratorMain {
