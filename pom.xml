@@ -10,7 +10,7 @@
     <properties>
         <scala.binary.version>2.12</scala.binary.version>
         <scala.version>2.12.8</scala.version>
-        <akka.version>2.5.26</akka.version>
+        <akka.version>2.5.31</akka.version>
 
         <plugin.maven.compiler.version>3.1</plugin.maven.compiler.version>
         <plugin.maven.jar.version>2.4</plugin.maven.jar.version>
@@ -131,6 +131,12 @@
         </dependency>
         <!--    Akka End   -->
 
+        <dependency>
+            <groupId>com.typesafe.play</groupId>
+            <artifactId>play-json_2.11</artifactId>
+            <version>2.7.4</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -183,7 +189,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>akka_demo.inaction.failure.LifeCycle</mainClass>
+<!--                            <mainClass>akka_demo.inaction.failure.LifeCycle</mainClass>-->
                         </manifest>
                     </archive>
                 </configuration>

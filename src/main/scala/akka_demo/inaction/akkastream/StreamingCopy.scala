@@ -12,21 +12,36 @@ import scala.concurrent.Future
 
 object StreamingCopy {
   def main(args: Array[String]): Unit = {
-    val source: Source[ByteString, Future[IOResult]] = FileIO.fromPath(Paths.get("logs/app.log"))
-    val sink: Sink[ByteString, Future[IOResult]] = FileIO.toPath(
-      Paths.get("logs/app2.log"), Set(CREATE, WRITE, APPEND)
-    )
+    //    val source: Source[ByteString, Future[IOResult]] = FileIO.fromPath(Paths.get("logs/app.log"))
+    //    val sink: Sink[ByteString, Future[IOResult]] = FileIO.toPath(
+    //      Paths.get("logs/app2.log"), Set(CREATE, WRITE, APPEND)
+    //    )
 
-    val runnableGraph: RunnableGraph[Future[IOResult]] = source.to(sink)
+    //    val runnableGraph: RunnableGraph[Future[IOResult]] = source.to(sink)
 
     //创建actorSystem运行Graph
     implicit val system = ActorSystem()
     implicit val ec = system.dispatcher
     implicit val materializer = ActorMaterializer()
 
-    runnableGraph.run().foreach { result =>
-      println(s"${result.status}, ${result.count} bytes read")
-      system.terminate()
-    }
+    Source(1 to 3)
+      .map { i =>
+        println(s"A: $i"); i
+      }
+//      .async
+      .map { i =>
+        println(s"B: $i"); i
+      }
+//      .async
+      .map { i =>
+        println(s"C: $i"); i
+      }
+//      .async
+      .runWith(Sink.ignore)
+
+    //    runnableGraph.run().foreach { result =>
+    //      println(s"${result.status}, ${result.count} bytes read")
+    //      system.terminate()
+    //    }
   }
 }

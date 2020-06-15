@@ -12,7 +12,7 @@ object One {
 
     println(sum(List(1, 2, 3): _*))
 
-    //io.Source.fromFile("pom.xml").getLines().foreach(println)
+    io.Source.fromFile("pom.xml").getLines().foreach(println)
   }
 
   def sum(ints: Int*): Int = {
