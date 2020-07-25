@@ -2,7 +2,6 @@ package playground
 
 import java.security.MessageDigest
 
-import com.softwaremill.quicklens._
 import org.apache.commons.codec.binary.Hex
 
 
