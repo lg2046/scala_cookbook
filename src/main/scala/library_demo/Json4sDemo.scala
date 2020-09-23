@@ -56,6 +56,7 @@ object Json4sDemo {
 
 
     //1: json字符串与json对象之间的转换
+    println("1: json字符串与json对象之间的转换")
     val obj = parse(JSON_OBJ_STR)
     (obj \ "studentName").extract[String] tap println
     (obj \ "studentAge").extract[Int] tap println
@@ -68,6 +69,7 @@ object Json4sDemo {
 
 
     //2: json字符串与json数组之间的转换
+    println("2: json字符串与json数组之间的转换")
     val jsonArray = parse(JSON_ARRAY_STR).asInstanceOf[JArray]
     jsonArray.extract[List[Map[String, _]]].foreach(println)
 
@@ -82,6 +84,7 @@ object Json4sDemo {
     }
 
     //3: 复杂json字符串与jsonobject的转换
+    println("3: 复杂json字符串与jsonobject的转换")
     val jsonComplexObj = parse(COMPLEX_JSON_STR)
     (jsonComplexObj \ "teacherName").extract[String] tap println
     (jsonComplexObj \ "teacherAge").extract[Int] tap println
