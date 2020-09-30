@@ -2,7 +2,6 @@ package CollectionBook
 
 import scala.collection.mutable.ArrayBuffer
 
-
 object ListDemo {
   def main(args: Array[String]): Unit = {
     //1: Populate

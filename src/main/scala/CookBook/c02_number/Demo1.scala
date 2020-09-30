@@ -6,9 +6,14 @@ import java.util.{Currency, Locale}
 import scala.util.Try
 import active_support._
 
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.duration._
+import scala.async.Async.{async, await}
+import scala.concurrent.{Await, Future}
+
 object Demo1 {
   def main(args: Array[String]): Unit = {
-    println(Try("goog".toDouble).toOption)
+    println(Try("google".toDouble).toOption)
 
     Integer.parseInt("100", 2)
 
@@ -36,5 +41,21 @@ object Demo1 {
     val formatter = NumberFormat.getCurrencyInstance
     formatter.setCurrency(Currency.getInstance(new Locale("cn", "CN")))
     println(formatter.format(123456.789))
+
+
+    val result2 = async {
+      val fs = (1 to 10).map { i =>
+        Future {
+          Thread.sleep(1000)
+          i + 10
+        }
+      }
+
+      val result = await(Future.sequence(fs))
+      println(result)
+    }
+
+
+    Await.ready(result2, 10 seconds)
   }
 }

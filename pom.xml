@@ -137,6 +137,12 @@
             <version>1.6.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.scala-lang.modules</groupId>
+            <artifactId>scala-async_${scala.binary.version}</artifactId>
+            <version>0.10.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -189,7 +195,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-<!--                            <mainClass>akka_demo.inaction.failure.LifeCycle</mainClass>-->
+                            <!--                            <mainClass>akka_demo.inaction.failure.LifeCycle</mainClass>-->
                         </manifest>
                     </archive>
                 </configuration>
